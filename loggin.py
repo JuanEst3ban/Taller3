@@ -19,6 +19,16 @@ class Loggin(Menu):
             self.btnIngresar.configure(state="normal")
         else:
             self.btnIngresar.configure(state="disabled")
+
+    def Limpiar(self, event):
+        self.txtTelefono.delete(0, END)
+        self.txtapellido.delete(0, END)
+        self.txtEmail.delete(0, END)
+        self.txtNombre.delete(0, END)
+        self.txtPasword.delete(0, END)
+        self.txtUsuario.delete(0, END)
+        self.txtusuario1.delete(0, END)
+    
     def mostrarAyuda(self,event):
         messagebox.showinfo("ayuda","debe diligenciar todos los campos marcados con *\nluego presione el boton Registrarse")    
     def __init__(self):
@@ -42,8 +52,12 @@ class Loggin(Menu):
         self.txtPasword.place(x=90,y=85)
         self.txtPasword.bind("<KeyRelease>",self.validarLongitud)
 
-        self.btnVer=tk.Button(self.ventana,text="ver")
-        self.btnVer.place(x=25,y=110)
+
+        iconoVer = tk.PhotoImage(file= r"Taller3\icons\eye.png")
+        self.btnVer=tk.Button(self.ventana,text="ver", image=iconoVer, compound=LEFT)
+        self.btnVer.place(x=10,y=110)
+        Tooltip(self.btnVer, "Presione para ver la contraseña. \nAlt+L")
+
 
         self.btnVer.bind("<Enter>",self.verCaracteres)
         self.btnVer.bind("<Leave>",self.ocultarCaracteres)
@@ -51,10 +65,14 @@ class Loggin(Menu):
         self.btnIngresar=tk.Button(self.ventana,text="ingresar",command=self.crearVentanaM,width=20,state="disabled") 
         self.btnIngresar.place(x=140, y=110)
 
-        self.btnLimpiar=tk.Button(self.ventana,text="limpiar") 
-        self.btnLimpiar.place(x=80,y=110)
+        iconoLimpiar = tk.PhotoImage(file= r"Tercer Semestre\Place\icons\textfield_delete.png")
+        self.btnLimpiar = tk.Button(self.ventana, text="limpiar", image=iconoLimpiar, compound=LEFT) 
+        self.btnLimpiar.place(x=70,y=110)
+        Tooltip(self.btnLimpiar, "Presione para Limpiar los campos de texto.\nAlt+l")
         
-        iconoAyuda=tk.PhotoImage(file=r"icons/help.png")
+        
+        
+        iconoAyuda=tk.PhotoImage(file=r"Taller3\icons\help.png")
         self.btnAyuda =tk.Button(self.ventana, image=iconoAyuda)
         self.btnAyuda.place(x=220, y=25, width=25, height=25)
         Tooltip(self.btnAyuda,"presione para obtener ayuda!\nALT+a")
